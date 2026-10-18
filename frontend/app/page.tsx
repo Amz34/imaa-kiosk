@@ -33,6 +33,14 @@ const DEMO: Card = {
   },
 };
 
+/** Script-specific stacks: Nastaliq for Urdu, Naskh for Arabic. Latin text in
+ *  an Urdu card is a rendering bug, not a style choice. */
+const SCRIPT_FONT: Record<Lang, string> = {
+  ar: "'Noto Naskh Arabic', 'Segoe UI', system-ui, sans-serif",
+  en: "system-ui, -apple-system, 'Segoe UI', sans-serif",
+  ur: "'Noto Nastaliq Urdu', 'Noto Naskh Arabic', system-ui, serif",
+};
+
 const LANGS: { id: Lang; dir: "rtl" | "ltr"; name: string }[] = [
   { id: "ar", dir: "rtl", name: "العربية" },
   { id: "en", dir: "ltr", name: "English" },
@@ -117,6 +125,7 @@ export default function Home() {
                 border: "1px solid #1b2430",
                 borderRadius: 14,
                 padding: "16px 18px",
+                fontFamily: SCRIPT_FONT[l.id],
               }}
             >
               <div

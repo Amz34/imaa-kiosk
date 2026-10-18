@@ -17,3 +17,7 @@ fmt:
 clean:
 	rm -rf frontend/.next backend/.pytest_cache
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
+
+# Functional UI smoke test on the local static export (headless Chrome + CDP).
+smoke:
+	@bash scripts/smoke.sh

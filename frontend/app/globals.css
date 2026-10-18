@@ -1,0 +1,78 @@
+/* Imaa kiosk — global reset + responsive shells.
+   Inline styles handle theme; layout responsiveness lives here because
+   media queries cannot be expressed inline. */
+
+:root {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Visible focus ring: essential on kiosk touchscreens and for keyboard users. */
+:where(button, a):focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.shell {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sign-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cards-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Counter/laptop widths: language cards sit side by side and the sign
+   grid expands to four across so the whole flow fits above the fold. */
+@media (min-width: 900px) {
+  .sign-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Urgency banner spans the full grid width on every breakpoint. */
+.urgency-bar {
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}

@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
-// Pin the tracing root: a stray lockfile higher up the tree otherwise makes
-// Next guess the wrong workspace root and pull unrelated files into the build.
+// The kiosk UI is fully client-side, so it ships as a static export and can be
+// served from Cloudflare Pages with no Node runtime in the request path.
 const nextConfig: NextConfig = {
+  output: "export",
+  images: { unoptimized: true },
   outputFileTracingRoot: path.join(__dirname),
 };
 

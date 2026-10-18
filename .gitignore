@@ -31,3 +31,6 @@ dist/
 # --- os ---
 .DS_Store
 Thumbs.db
+*.tsbuildinfo
+frontend/.next/
+frontend/out/

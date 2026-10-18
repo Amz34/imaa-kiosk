@@ -42,6 +42,7 @@ frontend/
 
 ```bash
 make verify     # backend tests + frontend typecheck + production build
+make smoke      # headless-Chrome functional test of the built kiosk UI
 ```
 
 One command, one exit code. Everything below is wired into it.

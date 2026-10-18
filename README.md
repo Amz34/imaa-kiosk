@@ -38,6 +38,14 @@ frontend/
 | 0 tests, 0 trials | 10 tests now; trials protocol in Roadmap |
 | 398 ms/decision (pure-Python DTW) | vectorised features, ONNX classifier |
 
+## Verify
+
+```bash
+make verify     # backend tests + frontend typecheck + production build
+```
+
+One command, one exit code. Everything below is wired into it.
+
 ## Run it
 
 ```bash

@@ -1,0 +1,33 @@
+# --- secrets & env ---
+.env
+.env.local
+*.pem
+*.key
+
+# --- biometric / capture data: NEVER commit ---
+backend/experiments/
+**/captures/
+**/*.npz
+**/*.mp4
+**/*.mov
+models/*.onnx
+models/*.pt
+assets/audio/
+assets/videos/
+
+# --- python ---
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# --- node ---
+node_modules/
+.next/
+out/
+dist/
+
+# --- os ---
+.DS_Store
+Thumbs.db

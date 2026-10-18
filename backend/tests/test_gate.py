@@ -3,6 +3,7 @@
 These are the tests Ishara-AI never wrote. They assert the property that
 matters clinically: the machine refuses rather than guesses.
 """
+
 import numpy as np
 import pytest
 

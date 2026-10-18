@@ -1,4 +1,4 @@
-.PHONY: verify test backend frontend fmt clean
+.PHONY: verify test backend frontend lint fmt clean smoke
 
 verify:
 	@bash scripts/verify.sh
@@ -12,7 +12,11 @@ frontend:
 	cd frontend && ./node_modules/.bin/tsc -p tsconfig.json --noEmit
 
 fmt:
-	cd backend && .venv/bin/python -m ruff format app tests 2>/dev/null || true
+	cd backend && .venv/bin/python -m ruff format app tests
+
+# Lint is a gate, not a suggestion: ruff exits non-zero on findings.
+lint:
+	cd backend && .venv/bin/python -m ruff check app tests
 
 clean:
 	rm -rf frontend/.next backend/.pytest_cache

@@ -1,4 +1,5 @@
 """Feature-layer tests: shape contract and invariance properties."""
+
 import numpy as np
 
 from app.services.features import FEATURE_DIM, normalise, resample

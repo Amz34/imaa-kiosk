@@ -14,6 +14,7 @@ Guarantee (distribution-free, finite sample):
 i.e. the wrong-accept rate is bounded by alpha on exchangeable data,
 instead of being asserted in a doc.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -26,8 +27,8 @@ ABSTAIN = "__unknown__"
 @dataclass
 class ConformalGate:
     alpha: float = 0.05
-    min_margin: float = 0.15          # second-opinion requirement
-    qhat: float = 1.0                 # fitted non-conformity quantile
+    min_margin: float = 0.15  # second-opinion requirement
+    qhat: float = 1.0  # fitted non-conformity quantile
     n_calibration: int = 0
     labels: list[str] = field(default_factory=list)
     fitted: bool = False
@@ -36,7 +37,7 @@ class ConformalGate:
         """1 - p(true class): standard APS-style score."""
         return 1.0 - probs[np.arange(len(y)), y]
 
-    def fit(self, probs: np.ndarray, y: np.ndarray) -> "ConformalGate":
+    def fit(self, probs: np.ndarray, y: np.ndarray) -> ConformalGate:
         probs = np.asarray(probs, dtype=np.float64)
         y = np.asarray(y, dtype=np.int64)
         if probs.ndim != 2 or len(probs) != len(y):

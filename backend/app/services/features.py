@@ -4,6 +4,7 @@ Ishara-AI's DTW ran ~398 ms/decision in pure Python. This module is the
 feature layer for the neural path: every operation is numpy-vectorised,
 so a 90-frame sequence normalises in well under a millisecond.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -42,9 +43,9 @@ def normalise(pose: np.ndarray, left: np.ndarray, right: np.ndarray) -> np.ndarr
     centre = centre[:, None, :]
     width = width[:, None, None]
 
-    pose_n = (pose[:, :, :2] - centre) / width          # (T,33,2) body anchor
-    left_n = (left[:, :, :2] - centre) / width           # (T,21,2)
-    right_n = (right[:, :, :2] - centre) / width         # (T,21,2)
+    pose_n = (pose[:, :, :2] - centre) / width  # (T,33,2) body anchor
+    left_n = (left[:, :, :2] - centre) / width  # (T,21,2)
+    right_n = (right[:, :, :2] - centre) / width  # (T,21,2)
 
     # Hand shape: translate to wrist, scale by hand span -> orientation free.
     l_shape = left_n - left_n[:, :1, :]
@@ -60,12 +61,12 @@ def normalise(pose: np.ndarray, left: np.ndarray, right: np.ndarray) -> np.ndarr
 
     feats = np.concatenate(
         [
-            pose_n.reshape(T, -1),        # 66  body anchor
-            l_shape.reshape(T, -1),        # 42  left shape
-            right_n.reshape(T, -1),        # 42  right anchor
-            r_shape.reshape(T, -1),        # 42  right shape
-            l_present,                     # 1
-            r_present,                     # 1
+            pose_n.reshape(T, -1),  # 66  body anchor
+            l_shape.reshape(T, -1),  # 42  left shape
+            right_n.reshape(T, -1),  # 42  right anchor
+            r_shape.reshape(T, -1),  # 42  right shape
+            l_present,  # 1
+            r_present,  # 1
         ],
         axis=1,
     )

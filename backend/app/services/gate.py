@@ -60,7 +60,7 @@ class ConformalGate:
         top, second = order[0], order[1] if len(order) > 1 else order[0]
 
         # Conformal set = every class whose score clears qhat.
-        keep = [int(i) for i in range(len(probs)) if (1.0 - probs[i]) <= self.qhat]
+        keep = np.flatnonzero(1.0 - probs <= self.qhat).tolist()
         margin = float(probs[top] - probs[second])
 
         if len(keep) != 1:

@@ -9,11 +9,8 @@ from __future__ import annotations
 import numpy as np
 
 # MediaPipe Holistic layout we depend on (33 pose landmarks).
-_NOSE = 0
 _L_SHOULDER = 11
 _R_SHOULDER = 12
-_L_HAND = [17, 19, 21]  # pinky, index, thumb CMC
-_R_HAND = [18, 20, 22]
 
 # 66 body + 42 left shape + 42 right anchor + 42 right shape + 2 presence
 FEATURE_DIM = 194
